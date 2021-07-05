@@ -1,10 +1,16 @@
 class Coche():
-    
-    #propiedades
-    largoChasis = 250
-    anchoChasis = 120
-    ruedas = 4
-    enmarcha = False
+  
+    #constructor
+    def __init__(self):
+         #propiedades del objeto se pueden poner así
+        self.largoChasis = 250
+        self.anchoChasis = 120
+        self.enmarcha = False
+
+        #si queremos poner privada("encapsular") una variable con dos guiones bajos
+        self.__ruedas = 4 #así no será accesible desde fuera de la clase
+        self.__funcionPrvada()
+        
 
     #comportamiento para los futuros objetos de la clase
     #Es decir, métodos
@@ -14,11 +20,23 @@ class Coche():
         self.enmarcha = True
         print("rum-ruuum")
     
+    #cuando recibe parámetros
+    def arrancaDecideTu(self, arrancamos):
+        self.enmarcha = arrancamos
+        if (self.enmarcha):
+            return "Arrancamos el coche"
+        else:
+            return "Paramos el coche"
+            
+    
     def estado(self):
         if (self.enmarcha):
             return "El coche está en marcha"
         else:
             return "El coche está parado"
+
+    def __funcionPrvada(self):
+        print("Analizo el coche")
 
 #Aqui se acaba la clase coche
 
@@ -28,3 +46,6 @@ miCoche = Coche()
 print(miCoche.estado())
 miCoche.arrancar()
 print(miCoche.estado())
+
+print(miCoche.arrancaDecideTu(True))
+print(miCoche.arrancaDecideTu(False))
